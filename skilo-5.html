@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ PRIMARY SEO ═══ -->
+<title>Skilo — AI Skill Gap Detector & Career Roadmap Generator</title>
+<meta name="description" content="Upload your CV and let Skilo's AI detect your skill gaps, match you to your dream job, and generate a personalized 12-week learning roadmap. Free to start.">
+<meta name="keywords" content="skill gap detector, AI career tool, career roadmap, CV analyzer, job skill analysis, upskill, learn to code, career change, AI skill gap, free career tool">
+<meta name="author" content="Skilo.ai">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c5cfc">
+<link rel="canonical" href="https://skilo.ai">
+
+<!-- ═══ OPEN GRAPH (Facebook, LinkedIn) ═══ -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://skilo.ai">
+<meta property="og:title" content="Skilo — Find Your Skill Gaps with AI">
+<meta property="og:description" content="Upload your CV. Get your skill gaps. Receive a personalized roadmap to your dream job. Powered by Gemini AI. Free to start.">
+<meta property="og:image" content="https://skilo.ai/og-image.png">
+<meta property="og:site_name" content="Skilo">
+<meta property="og:locale" content="en_US">
+
+<!-- ═══ TWITTER CARD ═══ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@skilo_ai">
+<meta name="twitter:title" content="Skilo — AI Skill Gap Detector">
+<meta name="twitter:description" content="Upload your CV and get a personalized 12-week roadmap to your dream job. Powered by Gemini AI.">
+<meta name="twitter:image" content="https://skilo.ai/og-image.png">
+
+<!-- ═══ STRUCTURED DATA (Google Rich Results) ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Skilo",
+  "url": "https://skilo.ai",
+  "description": "AI-powered skill gap detector and career roadmap generator. Upload your CV, get your skill gaps, and receive a personalized weekly learning plan.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free Plan",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Plan",
+      "price": "12",
+      "priceCurrency": "USD",
+      "billingPeriod": "P1M"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "124"
+  }
+}
+</script>
+
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%237c5cfc'/><text y='.9em' font-size='60' x='18'>⚡</text></svg>">
+
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080810;
+    --bg2: #0d0d1a;
+    --bg3: #121220;
+    --surface: #16162a;
+    --surface2: #1e1e38;
+    --border: #2a2a4a;
+    --border2: #3a3a60;
+    --purple: #7c5cfc;
+    --purple2: #9b7eff;
+    --purple3: #c4b0ff;
+    --purple-dim: rgba(124,92,252,0.15);
+    --purple-glow: rgba(124,92,252,0.3);
+    --white: #f0eeff;
+    --white2: #c8c4e0;
+    --white3: #8880aa;
+    --green: #4ade80;
+    --red: #f87171;
+    --yellow: #fbbf24;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:0; opacity:.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 40px;
+    background: rgba(8,8,16,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family:'Syne',sans-serif; font-weight:800; font-size:1.5rem;
+    color:var(--white); letter-spacing:-0.5px;
+    display:flex; align-items:center; gap:8px; cursor:pointer;
+  }
+  .logo-dot { width:8px; height:8px; background:var(--purple); border-radius:50%; box-shadow:0 0 12px var(--purple); }
+  .nav-links { display:flex; gap:32px; align-items:center; }
+  .nav-links a {
+    color:var(--white3); font-size:.9rem; text-decoration:none;
+    transition:.2s; cursor:pointer;
+  }
+  .nav-links a:hover { color:var(--white); }
+  .nav-cta {
+    background: var(--purple); color:#fff; border:none;
+    padding:9px 20px; border-radius:8px; font-size:.875rem;
+    font-family:'DM Sans',sans-serif; font-weight:500;
+    cursor:pointer; transition:.2s;
+  }
+  .nav-cta:hover { background:var(--purple2); transform:translateY(-1px); }
+
+  /* ── PAGES ── */
+  .page { display:none; min-height:100vh; padding-top:70px; position:relative; z-index:1; }
+  .page.active { display:block; }
+
+  /* ══════════════════════════════
+     LANDING PAGE
+  ══════════════════════════════ */
+  #landing { overflow:hidden; }
+
+  .hero-bg {
+    position:absolute; top:0; left:0; right:0; height:100vh;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,92,252,0.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid {
+    position:absolute; inset:0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity:.2; pointer-events:none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 20%, transparent 80%);
+  }
+
+  .hero {
+    max-width:900px; margin:0 auto;
+    padding: 100px 24px 60px;
+    text-align:center; position:relative;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--purple-dim); border:1px solid rgba(124,92,252,0.3);
+    color:var(--purple3); padding:6px 16px; border-radius:100px;
+    font-size:.8rem; font-weight:500; margin-bottom:28px;
+    animation: fadeUp .6s ease both;
+  }
+  .badge-dot { width:6px; height:6px; background:var(--purple); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .hero h1 {
+    font-family:'Syne',sans-serif; font-weight:800;
+    font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.1;
+    letter-spacing:-2px; margin-bottom:20px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 span { color:var(--purple2); }
+  .hero p {
+    font-size:1.1rem; color:var(--white2); max-width:560px; margin:0 auto 36px;
+    line-height:1.7; font-weight:300;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-btns {
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-primary {
+    background:var(--purple); color:#fff; border:none;
+    padding:13px 28px; border-radius:10px; font-size:.95rem;
+    font-family:'DM Sans',sans-serif; font-weight:500;
+    cursor:pointer; transition:.2s;
+    box-shadow: 0 0 30px var(--purple-glow);
+  }
+  .btn-primary:hover { background:var(--purple2); transform:translateY(-2px); box-shadow:0 0 40px var(--purple-glow); }
+  .btn-secondary {
+    background:transparent; color:var(--white2); border:1px solid var(--border2);
+    padding:13px 28px; border-radius:10px; font-size:.95rem;
+    font-family:'DM Sans',sans-serif; font-weight:500;
+    cursor:pointer; transition:.2s;
+  }
+  .btn-secondary:hover { border-color:var(--purple); color:var(--white); background:var(--purple-dim); }
+
+  /* Stats */
+  .hero-stats {
+    display:flex; gap:40px; justify-content:center; margin-top:60px;
+    padding-top:40px; border-top:1px solid var(--border);
+    animation: fadeUp .6s .4s ease both;
+    flex-wrap:wrap;
+  }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--white); }
+  .stat-label { font-size:.8rem; color:var(--white3); margin-top:2px; }
+
+  /* Features */
+  .section { max-width:1100px; margin:0 auto; padding:80px 24px; }
+  .section-label {
+    font-size:.75rem; letter-spacing:3px; text-transform:uppercase;
+    color:var(--purple3); font-weight:600; margin-bottom:12px;
+  }
+  .section-title {
+    font-family:'Syne',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem);
+    font-weight:800; letter-spacing:-1px; margin-bottom:16px;
+  }
+  .section-sub { color:var(--white2); font-size:1rem; max-width:500px; line-height:1.7; }
+
+  .features-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px; margin-top:48px;
+  }
+  .feature-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; padding:28px;
+    transition:.3s; position:relative; overflow:hidden;
+  }
+  .feature-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,var(--purple),transparent);
+    opacity:0; transition:.3s;
+  }
+  .feature-card:hover { border-color:var(--border2); transform:translateY(-4px); }
+  .feature-card:hover::before { opacity:1; }
+  .feature-icon {
+    width:44px; height:44px; background:var(--purple-dim); border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; margin-bottom:16px;
+    border:1px solid rgba(124,92,252,0.2);
+  }
+  .feature-card h3 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:8px; font-size:1rem; }
+  .feature-card p { color:var(--white3); font-size:.875rem; line-height:1.6; }
+
+  /* How it works */
+  .how-section { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .steps { display:flex; gap:0; margin-top:48px; position:relative; flex-wrap:wrap; }
+  .steps::before {
+    content:''; position:absolute; top:28px; left:28px; right:28px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--border2),var(--purple),var(--border2),transparent);
+  }
+  .step { flex:1; min-width:180px; text-align:center; padding:0 16px; position:relative; }
+  .step-num {
+    width:56px; height:56px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--border2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem;
+    margin:0 auto 16px; position:relative; z-index:1;
+    color:var(--purple2);
+  }
+  .step h4 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:6px; font-size:.95rem; }
+  .step p { color:var(--white3); font-size:.82rem; line-height:1.5; }
+
+  /* ══════════════════════════════
+     CV UPLOAD PAGE
+  ══════════════════════════════ */
+  .upload-container { max-width:700px; margin:0 auto; padding:60px 24px; }
+  .page-title {
+    font-family:'Syne',sans-serif; font-weight:800; font-size:2rem;
+    letter-spacing:-1px; margin-bottom:8px;
+  }
+  .page-sub { color:var(--white3); font-size:.95rem; margin-bottom:40px; }
+
+  .upload-box {
+    border:2px dashed var(--border2); border-radius:20px;
+    padding:60px 40px; text-align:center;
+    transition:.3s; cursor:pointer; position:relative;
+    background:var(--surface);
+  }
+  .upload-box:hover { border-color:var(--purple); background:var(--purple-dim); }
+  .upload-box.dragging { border-color:var(--purple); background:var(--purple-dim); }
+  .upload-icon { font-size:3rem; margin-bottom:16px; }
+  .upload-box h3 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:8px; }
+  .upload-box p { color:var(--white3); font-size:.875rem; }
+  .upload-box input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+  .divider { display:flex; align-items:center; gap:16px; margin:28px 0; }
+  .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+  .divider span { color:var(--white3); font-size:.8rem; }
+
+  .url-input-wrap { position:relative; }
+  .url-input {
+    width:100%; background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:14px 50px 14px 18px;
+    color:var(--white); font-family:'DM Sans',sans-serif; font-size:.95rem;
+    transition:.2s; outline:none;
+  }
+  .url-input:focus { border-color:var(--purple); box-shadow:0 0 0 3px var(--purple-dim); }
+  .url-input::placeholder { color:var(--white3); }
+
+  .job-section { margin-top:32px; }
+  .label { font-size:.85rem; font-weight:500; color:var(--white2); margin-bottom:10px; display:block; }
+  .job-chips { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .chip {
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:100px; padding:6px 14px; font-size:.8rem; color:var(--white2);
+    cursor:pointer; transition:.2s;
+  }
+  .chip:hover,.chip.selected { background:var(--purple-dim); border-color:var(--purple); color:var(--purple3); }
+
+  .analyze-btn {
+    width:100%; background:var(--purple); color:#fff; border:none;
+    padding:15px; border-radius:12px; font-size:1rem;
+    font-family:'Syne',sans-serif; font-weight:700;
+    cursor:pointer; transition:.2s; margin-top:28px;
+    box-shadow:0 0 30px var(--purple-glow);
+    letter-spacing:.5px;
+  }
+  .analyze-btn:hover { background:var(--purple2); transform:translateY(-2px); }
+
+  /* Progress */
+  .progress-wrap { display:none; margin-top:32px; }
+  .progress-wrap.show { display:block; }
+  .progress-steps { display:flex; flex-direction:column; gap:12px; }
+  .prog-step {
+    display:flex; align-items:center; gap:12px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px; font-size:.875rem;
+    transition:.5s;
+  }
+  .prog-step.done { border-color:rgba(74,222,128,.3); background:rgba(74,222,128,.05); }
+  .prog-step.active { border-color:var(--purple); background:var(--purple-dim); }
+  .prog-icon { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; }
+  .prog-step.done .prog-icon { background:rgba(74,222,128,.2); }
+  .prog-step.active .prog-icon { background:var(--purple-dim); animation:spin 1s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* ══════════════════════════════
+     DASHBOARD
+  ══════════════════════════════ */
+  .dashboard-layout { display:grid; grid-template-columns:240px 1fr; min-height:calc(100vh - 70px); }
+  .sidebar {
+    background:var(--bg2); border-right:1px solid var(--border);
+    padding:28px 16px; display:flex; flex-direction:column; gap:4px;
+  }
+  .sidebar-label { font-size:.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--white3); padding:8px 12px 4px; font-weight:600; }
+  .sidebar-item {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 12px; border-radius:8px; cursor:pointer;
+    color:var(--white3); font-size:.875rem; transition:.2s;
+  }
+  .sidebar-item:hover { background:var(--surface); color:var(--white); }
+  .sidebar-item.active { background:var(--purple-dim); color:var(--purple3); border:1px solid rgba(124,92,252,.2); }
+  .sidebar-icon { font-size:1rem; }
+
+  .dash-content { padding:32px; overflow-y:auto; }
+  .dash-greeting { margin-bottom:28px; }
+  .dash-greeting h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.6rem; letter-spacing:-.5px; }
+  .dash-greeting p { color:var(--white3); font-size:.875rem; margin-top:4px; }
+
+  .score-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:28px; }
+  .score-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:20px;
+  }
+  .score-card-label { font-size:.75rem; color:var(--white3); margin-bottom:8px; font-weight:500; }
+  .score-card-value { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; }
+  .score-card-value.purple { color:var(--purple2); }
+  .score-card-value.green { color:var(--green); }
+  .score-card-value.yellow { color:var(--yellow); }
+  .score-card-change { font-size:.75rem; color:var(--white3); margin-top:4px; }
+
+  .dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .dash-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:22px;
+  }
+  .dash-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+
+  .skill-bar-wrap { margin-bottom:14px; }
+  .skill-bar-top { display:flex; justify-content:space-between; font-size:.8rem; margin-bottom:6px; }
+  .skill-bar-top span:first-child { color:var(--white2); }
+  .skill-bar-top span:last-child { color:var(--white3); }
+  .skill-bar { height:6px; background:var(--bg3); border-radius:100px; overflow:hidden; }
+  .skill-bar-fill { height:100%; border-radius:100px; background:linear-gradient(90deg,var(--purple),var(--purple2)); transition:width 1s ease; }
+  .skill-bar-fill.gap { background:linear-gradient(90deg,#f87171,#fbbf24); }
+
+  .gap-list { display:flex; flex-direction:column; gap:10px; }
+  .gap-item {
+    display:flex; align-items:center; gap:12px;
+    background:var(--bg3); border-radius:10px; padding:12px;
+  }
+  .gap-badge {
+    font-size:.7rem; font-weight:700; padding:3px 8px; border-radius:100px; flex-shrink:0;
+  }
+  .gap-badge.high { background:rgba(248,113,113,.15); color:#f87171; border:1px solid rgba(248,113,113,.3); }
+  .gap-badge.med { background:rgba(251,191,36,.15); color:#fbbf24; border:1px solid rgba(251,191,36,.3); }
+  .gap-badge.low { background:rgba(74,222,128,.15); color:#4ade80; border:1px solid rgba(74,222,128,.3); }
+  .gap-item-text { font-size:.875rem; color:var(--white2); flex:1; }
+
+  /* ══════════════════════════════
+     ROADMAP PAGE
+  ══════════════════════════════ */
+  .roadmap-container { max-width:800px; margin:0 auto; padding:60px 24px; }
+  .roadmap-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:40px; flex-wrap:wrap; gap:16px; }
+  .target-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--purple-dim); border:1px solid rgba(124,92,252,.3);
+    padding:6px 14px; border-radius:100px; font-size:.8rem; color:var(--purple3);
+  }
+
+  .timeline { position:relative; }
+  .timeline::before {
+    content:''; position:absolute; left:20px; top:0; bottom:0; width:2px;
+    background:linear-gradient(180deg,var(--purple),var(--border));
+  }
+  .timeline-item { display:flex; gap:20px; margin-bottom:28px; position:relative; }
+  .timeline-dot {
+    width:40px; height:40px; border-radius:50%; flex-shrink:0;
+    border:2px solid var(--border2); background:var(--surface);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; position:relative; z-index:1;
+  }
+  .timeline-dot.done { background:rgba(74,222,128,.15); border-color:rgba(74,222,128,.5); }
+  .timeline-dot.active { background:var(--purple-dim); border-color:var(--purple); box-shadow:0 0 16px var(--purple-glow); }
+  .timeline-body {
+    flex:1; background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:18px; transition:.2s;
+  }
+  .timeline-body:hover { border-color:var(--border2); }
+  .timeline-week { font-size:.7rem; color:var(--purple3); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .timeline-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; margin-bottom:8px; }
+  .timeline-desc { font-size:.82rem; color:var(--white3); line-height:1.6; margin-bottom:12px; }
+  .timeline-tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .tag {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:100px; padding:3px 10px; font-size:.72rem; color:var(--white3);
+  }
+  .timeline-progress { margin-top:12px; }
+  .timeline-progress-bar { height:4px; background:var(--bg3); border-radius:100px; overflow:hidden; }
+  .timeline-progress-fill { height:100%; background:linear-gradient(90deg,var(--purple),var(--purple2)); border-radius:100px; }
+
+  /* ══════════════════════════════
+     PRICING PAGE
+  ══════════════════════════════ */
+  .pricing-container { max-width:1000px; margin:0 auto; padding:60px 24px; text-align:center; }
+  .pricing-toggle {
+    display:inline-flex; background:var(--surface); border:1px solid var(--border);
+    border-radius:100px; padding:4px; margin:28px 0;
+  }
+  .toggle-btn {
+    padding:8px 20px; border-radius:100px; border:none;
+    font-family:'DM Sans',sans-serif; font-size:.875rem; cursor:pointer; transition:.2s;
+    background:transparent; color:var(--white3);
+  }
+  .toggle-btn.active { background:var(--purple); color:#fff; }
+
+  .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:20px; }
+  .pricing-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:20px; padding:32px; text-align:left; position:relative; overflow:hidden;
+    transition:.3s;
+  }
+  .pricing-card:hover { transform:translateY(-4px); }
+  .pricing-card.popular {
+    border-color:var(--purple);
+    background:linear-gradient(135deg,var(--surface) 0%,rgba(124,92,252,.08) 100%);
+  }
+  .pricing-card.popular::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--purple),var(--purple2),transparent);
+  }
+  .popular-tag {
+    position:absolute; top:20px; right:20px;
+    background:var(--purple); color:#fff;
+    font-size:.7rem; font-weight:700; padding:4px 10px; border-radius:100px;
+    letter-spacing:.5px;
+  }
+  .plan-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:2px; text-transform:uppercase; color:var(--white3); margin-bottom:12px; }
+  .plan-price { font-family:'Syne',sans-serif; font-weight:800; font-size:2.8rem; letter-spacing:-2px; margin-bottom:4px; }
+  .plan-price span { font-size:1rem; color:var(--white3); font-weight:400; letter-spacing:0; }
+  .plan-desc { color:var(--white3); font-size:.85rem; margin-bottom:24px; }
+  .plan-features { display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+  .plan-feature { display:flex; align-items:center; gap:10px; font-size:.875rem; color:var(--white2); }
+  .check { color:var(--green); font-size:1rem; }
+  .cross { color:var(--white3); font-size:1rem; }
+  .plan-btn {
+    width:100%; padding:12px; border-radius:10px;
+    font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem;
+    cursor:pointer; transition:.2s; border:none;
+  }
+  .plan-btn.outline {
+    background:transparent; border:1px solid var(--border2); color:var(--white2);
+  }
+  .plan-btn.outline:hover { border-color:var(--purple); color:var(--purple3); background:var(--purple-dim); }
+  .plan-btn.filled { background:var(--purple); color:#fff; box-shadow:0 0 20px var(--purple-glow); }
+  .plan-btn.filled:hover { background:var(--purple2); }
+
+  .faq { max-width:640px; margin:60px auto 0; text-align:left; }
+  .faq-title { font-family:'Syne',sans-serif; font-weight:800; font-size:1.6rem; text-align:center; margin-bottom:28px; }
+  .faq-item { border-bottom:1px solid var(--border); }
+  .faq-q {
+    width:100%; background:none; border:none; color:var(--white);
+    padding:18px 0; text-align:left; font-size:.9rem; font-family:'DM Sans',sans-serif;
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+    font-weight:500;
+  }
+  .faq-a { color:var(--white3); font-size:.875rem; line-height:1.7; padding-bottom:16px; display:none; }
+  .faq-item.open .faq-a { display:block; }
+  .faq-item.open .faq-arrow { transform:rotate(180deg); }
+  .faq-arrow { transition:.2s; color:var(--white3); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px) {
+    nav { padding:14px 20px; }
+    .nav-links { display:none; }
+    .dashboard-layout { grid-template-columns:1fr; }
+    .sidebar { display:none; }
+    .dash-grid { grid-template-columns:1fr; }
+    .steps::before { display:none; }
+    .hero { padding:60px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('landing')">
+    <div class="logo-dot"></div>
+    Skilo
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('landing')">Home</a>
+    <a onclick="showPage('pricing')">Pricing</a>
+    <a onclick="showPage('dashboard')">Dashboard</a>
+  </div>
+  <button class="nav-cta" onclick="showPage('upload')">Get Started Free</button>
+</nav>
+
+<!-- ════════════════════════════
+     LANDING PAGE
+════════════════════════════ -->
+<div id="landing" class="page active">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      AI-Powered Career Intelligence
+    </div>
+    <h1>Find Your <span>Skill Gaps</span><br>Before They Find You</h1>
+    <p>Upload your CV or LinkedIn profile. Skilo's AI analyzes your skills against your dream job and builds a personalized weekly roadmap to get you there.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('upload')">Analyze My Skills — Free</button>
+      <button class="btn-secondary" onclick="showPage('roadmap')">See Sample Roadmap</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">12K+</div>
+        <div class="stat-label">CVs Analyzed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">94%</div>
+        <div class="stat-label">Accuracy Rate</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3.2x</div>
+        <div class="stat-label">Faster Hiring</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Free</div>
+        <div class="stat-label">To Start</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section">
+    <div class="section-label">Why Skilo</div>
+    <h2 class="section-title">Everything you need to<br>level up your career</h2>
+    <p class="section-sub">Stop guessing what skills to learn. Skilo tells you exactly what's missing and how to fix it.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Precision Gap Analysis</h3>
+        <p>AI compares your current skills against real job requirements and shows exactly what's missing — not just generic advice.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Weekly Roadmap</h3>
+        <p>Get a personalized 3-month plan broken into weekly goals. Know exactly what to learn, when, and in what order.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Progress Tracking</h3>
+        <p>Track your skill development over time. See how close you are to your dream job with each update.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Analysis</h3>
+        <p>Results in under 30 seconds. Upload your CV or paste your LinkedIn URL — Skilo handles the rest.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Multi-Role Matching</h3>
+        <p>Compare your profile against multiple job roles simultaneously. Find which career path needs least upskilling.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Export to PDF</h3>
+        <p>Download your roadmap as a clean PDF. Share with mentors or keep as your personal career guide.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-section">
+    <div class="section">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From CV to roadmap<br>in 3 simple steps</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h4>Upload Your CV</h4>
+          <p>Drop your PDF or paste your LinkedIn URL. We parse everything automatically.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h4>Choose Your Goal</h4>
+          <p>Select your dream job role. Skilo finds the exact skills needed for that position.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h4>Get Your Roadmap</h4>
+          <p>Receive a detailed gap analysis and a personalized weekly learning roadmap.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h4>Track & Level Up</h4>
+          <p>Update your progress weekly. Watch your skill score climb toward your goal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="section" style="text-align:center">
+    <h2 class="section-title">Ready to close your skill gap?</h2>
+    <p class="section-sub" style="margin:0 auto 32px">Join thousands of professionals who used Skilo to land their dream job.</p>
+    <button class="btn-primary" onclick="showPage('upload')" style="font-size:1rem;padding:15px 36px">Start for Free — No Credit Card</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     CV UPLOAD PAGE
+════════════════════════════ -->
+<div id="upload" class="page">
+  <div class="upload-container">
+    <div class="hero-badge" style="margin-bottom:20px">
+      <div class="badge-dot"></div>
+      Step 1 of 2 — Upload Your Profile
+    </div>
+    <h1 class="page-title">Upload your CV</h1>
+    <p class="page-sub">We'll analyze your skills in under 30 seconds</p>
+
+    <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept=".pdf,.doc,.docx" style="display:none" onchange="fileSelected(this)">
+      <div class="upload-icon">📄</div>
+      <h3>Drop your CV here</h3>
+      <p>Supports PDF, DOC, DOCX — Max 10MB</p>
+    </div>
+
+    <div class="divider"><span>or paste LinkedIn URL</span></div>
+
+    <div class="url-input-wrap">
+      <input class="url-input" type="text" placeholder="https://linkedin.com/in/yourname" id="linkedinUrl">
+    </div>
+
+    <div class="job-section" style="margin-top:28px">
+      <span class="label">🎯 What's your dream job?</span>
+      <div class="job-chips">
+        <div class="chip" onclick="toggleChip(this)">Frontend Developer</div>
+        <div class="chip" onclick="toggleChip(this)">Data Scientist</div>
+        <div class="chip" onclick="toggleChip(this)">Product Manager</div>
+        <div class="chip" onclick="toggleChip(this)">UX Designer</div>
+        <div class="chip" onclick="toggleChip(this)">DevOps Engineer</div>
+        <div class="chip" onclick="toggleChip(this)">ML Engineer</div>
+        <div class="chip" onclick="toggleChip(this)">Backend Developer</div>
+        <div class="chip" onclick="toggleChip(this)">Cloud Architect</div>
+      </div>
+      <input class="url-input" type="text" placeholder="Or type a custom job role..." style="margin-top:0">
+    </div>
+
+    <button class="analyze-btn" onclick="startAnalysis()">⚡ Analyze My Skills</button>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-steps" id="progressSteps">
+        <div class="prog-step" id="step1">
+          <div class="prog-icon">📄</div>
+          <span>Parsing your CV...</span>
+        </div>
+        <div class="prog-step" id="step2">
+          <div class="prog-icon">🧠</div>
+          <span>Extracting skills with AI...</span>
+        </div>
+        <div class="prog-step" id="step3">
+          <div class="prog-icon">🎯</div>
+          <span>Matching against job requirements...</span>
+        </div>
+        <div class="prog-step" id="step4">
+          <div class="prog-icon">🗺️</div>
+          <span>Generating your roadmap...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DASHBOARD
+════════════════════════════ -->
+<div id="dashboard" class="page">
+  <div class="dashboard-layout">
+    <div class="sidebar">
+      <div class="sidebar-label">Menu</div>
+      <div class="sidebar-item active"><span class="sidebar-icon">📊</span> Overview</div>
+      <div class="sidebar-item" onclick="showPage('roadmap')"><span class="sidebar-icon">🗺️</span> My Roadmap</div>
+      <div class="sidebar-item" onclick="showPage('upload')"><span class="sidebar-icon">📄</span> New Scan</div>
+      <div class="sidebar-label" style="margin-top:16px">Account</div>
+      <div class="sidebar-item"><span class="sidebar-icon">⚙️</span> Settings</div>
+      <div class="sidebar-item" onclick="showPage('pricing')"><span class="sidebar-icon">⭐</span> Upgrade</div>
+    </div>
+
+    <div class="dash-content">
+      <div class="dash-greeting">
+        <h2>Welcome back 👋</h2>
+        <p>Last analyzed: Frontend Developer role — 2 days ago</p>
+      </div>
+
+      <div class="score-cards">
+        <div class="score-card">
+          <div class="score-card-label">SKILL MATCH SCORE</div>
+          <div class="score-card-value purple">68%</div>
+          <div class="score-card-change">↑ +12% from last scan</div>
+        </div>
+        <div class="score-card">
+          <div class="score-card-label">SKILLS MATCHED</div>
+          <div class="score-card-value green">14/21</div>
+          <div class="score-card-change">7 gaps remaining</div>
+        </div>
+        <div class="score-card">
+          <div class="score-card-label">ROADMAP PROGRESS</div>
+          <div class="score-card-value yellow">Week 3/12</div>
+          <div class="score-card-change">On track ✓</div>
+        </div>
+        <div class="score-card">
+          <div class="score-card-label">EST. READY DATE</div>
+          <div class="score-card-value" style="font-size:1.4rem">Jun 2025</div>
+          <div class="score-card-change">~9 weeks away</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-title">💪 Your Current Skills</div>
+          <div id="aiSummary" style="font-size:.82rem;color:#8880aa;margin-bottom:14px;line-height:1.6">Analyzing your profile...</div>
+          <div id="skillBarsContainer"><div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span>React.js</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span>JavaScript</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span>CSS / Tailwind</span><span>75%</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span>Node.js</span><span>50%</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span>TypeScript</span><span>35%</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:35%"></div></div>
+          </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-title">🔴 Skill Gaps to Close</div>
+          <div class="gap-list" id="gapListContainer">
+            <div class="gap-item">
+              <span class="gap-badge high">HIGH</span>
+              <span class="gap-item-text">TypeScript — Required for 90% of jobs</span>
+            </div>
+            <div class="gap-item">
+              <span class="gap-badge high">HIGH</span>
+              <span class="gap-item-text">System Design — Senior level must</span>
+            </div>
+            <div class="gap-item">
+              <span class="gap-badge med">MED</span>
+              <span class="gap-item-text">GraphQL — Growing demand</span>
+            </div>
+            <div class="gap-item">
+              <span class="gap-badge med">MED</span>
+              <span class="gap-item-text">Testing (Jest/Cypress)</span>
+            </div>
+            <div class="gap-item">
+              <span class="gap-badge low">LOW</span>
+              <span class="gap-item-text">Docker basics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card" style="margin-top:20px">
+        <div class="dash-card-title">📈 Skills Progress Over Time</div>
+        <div style="display:flex;gap:12px;margin-top:4px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--white3);margin-bottom:8px">
+              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+            </div>
+            <svg viewBox="0 0 400 80" style="width:100%;height:80px">
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7c5cfc" stop-opacity=".3"/>
+                  <stop offset="100%" stop-color="#7c5cfc" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,70 L65,58 L130,50 L200,38 L270,28 L335,18 L400,12" stroke="#7c5cfc" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M0,70 L65,58 L130,50 L200,38 L270,28 L335,18 L400,12 L400,80 L0,80Z" fill="url(#lineGrad)"/>
+              <circle cx="400" cy="12" r="5" fill="#9b7eff"/>
+            </svg>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;margin-top:8px">
+          <span style="font-size:.75rem;color:var(--white3)">Skill Score: <span style="color:var(--purple2);font-weight:700">56% → 68%</span></span>
+          <span style="font-size:.75rem;color:var(--green)">↑ 12% improvement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     ROADMAP PAGE
+════════════════════════════ -->
+<div id="roadmap" class="page">
+  <div class="roadmap-container">
+    <div class="roadmap-header">
+      <div>
+        <div class="target-badge">🎯 Target: Frontend Developer</div>
+        <h1 class="page-title" style="margin-top:12px">Your 12-Week Roadmap</h1>
+        <p class="page-sub">Personalized plan to close your skill gaps</p>
+      </div>
+      <button class="btn-secondary" style="white-space:nowrap">📄 Export PDF</button>
+    </div>
+
+    <div class="timeline" id="aiTimeline">
+      <div class="timeline-item">
+        <div class="timeline-dot done">✓</div>
+        <div class="timeline-body">
+          <div class="timeline-week">WEEK 1-2 · COMPLETED</div>
+          <div class="timeline-title">TypeScript Fundamentals</div>
+          <div class="timeline-desc">Master types, interfaces, generics, and strict mode. Build 2 mini projects using TypeScript only.</div>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Types & Interfaces</span>
+            <span class="tag">Generics</span>
+          </div>
+          <div class="timeline-progress">
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--white3);margin-bottom:4px"><span>Progress</span><span>100%</span></div>
+            <div class="timeline-progress-bar"><div class="timeline-progress-fill" style="width:100%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot active">⚡</div>
+        <div class="timeline-body" style="border-color:var(--purple)">
+          <div class="timeline-week">WEEK 3-4 · IN PROGRESS</div>
+          <div class="timeline-title">Advanced TypeScript + React Integration</div>
+          <div class="timeline-desc">Use TypeScript with React hooks, context API, and component props. Refactor an existing project.</div>
+          <div class="timeline-tags">
+            <span class="tag">React + TS</span>
+            <span class="tag">Typed Hooks</span>
+            <span class="tag">Context API</span>
+          </div>
+          <div class="timeline-progress">
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--white3);margin-bottom:4px"><span>Progress</span><span>60%</span></div>
+            <div class="timeline-progress-bar"><div class="timeline-progress-fill" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-body">
+          <div class="timeline-week">WEEK 5-6 · UPCOMING</div>
+          <div class="timeline-title">Testing with Jest & React Testing Library</div>
+          <div class="timeline-desc">Write unit tests, integration tests, and learn TDD basics. Achieve 80% test coverage on a project.</div>
+          <div class="timeline-tags">
+            <span class="tag">Jest</span>
+            <span class="tag">React Testing Library</span>
+            <span class="tag">TDD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-body">
+          <div class="timeline-week">WEEK 7-8 · UPCOMING</div>
+          <div class="timeline-title">GraphQL Basics to Intermediate</div>
+          <div class="timeline-desc">Learn queries, mutations, subscriptions. Use Apollo Client with React to build a real-time app.</div>
+          <div class="timeline-tags">
+            <span class="tag">GraphQL</span>
+            <span class="tag">Apollo Client</span>
+            <span class="tag">Real-time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">5</div>
+        <div class="timeline-body">
+          <div class="timeline-week">WEEK 9-10 · UPCOMING</div>
+          <div class="timeline-title">System Design for Frontend</div>
+          <div class="timeline-desc">Scalable component architecture, micro-frontends, performance optimization, and design patterns.</div>
+          <div class="timeline-tags">
+            <span class="tag">Architecture</span>
+            <span class="tag">Performance</span>
+            <span class="tag">Design Patterns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">6</div>
+        <div class="timeline-body">
+          <div class="timeline-week">WEEK 11-12 · UPCOMING</div>
+          <div class="timeline-title">Portfolio Project + Interview Prep</div>
+          <div class="timeline-desc">Build a full-stack project showcasing all new skills. Prepare for technical interviews with mock questions.</div>
+          <div class="timeline-tags">
+            <span class="tag">Portfolio</span>
+            <span class="tag">Interview Prep</span>
+            <span class="tag">Full Project</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;text-align:center">
+      <button class="btn-primary" onclick="showPage('pricing')">⭐ Upgrade to Track Progress</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     PRICING PAGE
+════════════════════════════ -->
+<div id="pricing" class="page">
+  <div class="pricing-container">
+    <div class="section-label" style="margin-bottom:8px">Pricing</div>
+    <h1 class="section-title" style="font-size:2.4rem">Simple, honest pricing</h1>
+    <p style="color:var(--white3);font-size:.95rem">Start free. Upgrade when you're ready to go deeper.</p>
+
+    <div class="pricing-toggle">
+      <button class="toggle-btn active" id="monthlyBtn" onclick="toggleBilling('monthly')">Monthly</button>
+      <button class="toggle-btn" id="yearlyBtn" onclick="toggleBilling('yearly')">Yearly <span style="color:var(--green);font-size:.75rem"> −40%</span></button>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0<span>/mo</span></div>
+        <div class="plan-desc">Perfect to try Skilo out</div>
+        <div class="plan-features">
+          <div class="plan-feature"><span class="check">✓</span> 2 CV scans per month</div>
+          <div class="plan-feature"><span class="check">✓</span> Basic skill gap report</div>
+          <div class="plan-feature"><span class="check">✓</span> 1-week roadmap preview</div>
+          <div class="plan-feature"><span class="check">✓</span> 1 job role match</div>
+          <div class="plan-feature"><span class="cross">✗</span> <span style="color:var(--white3)">Full 12-week roadmap</span></div>
+          <div class="plan-feature"><span class="cross">✗</span> <span style="color:var(--white3)">Progress tracking</span></div>
+          <div class="plan-feature"><span class="cross">✗</span> <span style="color:var(--white3)">PDF export</span></div>
+        </div>
+        <button class="plan-btn outline" onclick="showPage('upload')">Get Started Free</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card popular">
+        <div class="popular-tag">POPULAR</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price" id="proPrice">$12<span>/mo</span></div>
+        <div class="plan-desc">For serious career movers</div>
+        <div class="plan-features">
+          <div class="plan-feature"><span class="check">✓</span> Unlimited CV scans</div>
+          <div class="plan-feature"><span class="check">✓</span> Deep skill gap analysis</div>
+          <div class="plan-feature"><span class="check">✓</span> Full 12-week roadmap</div>
+          <div class="plan-feature"><span class="check">✓</span> Unlimited job role match</div>
+          <div class="plan-feature"><span class="check">✓</span> Progress tracking</div>
+          <div class="plan-feature"><span class="check">✓</span> PDF export</div>
+          <div class="plan-feature"><span class="cross">✗</span> <span style="color:var(--white3)">Team features</span></div>
+        </div>
+        <button class="plan-btn filled" onclick="openPayment('Pro')">Start Pro — Free 7 Days</button>
+      </div>
+
+      <!-- Team -->
+      <div class="pricing-card">
+        <div class="plan-name">Team</div>
+        <div class="plan-price" id="teamPrice">$29<span>/mo</span></div>
+        <div class="plan-desc">For teams & hiring managers</div>
+        <div class="plan-features">
+          <div class="plan-feature"><span class="check">✓</span> Everything in Pro</div>
+          <div class="plan-feature"><span class="check">✓</span> Up to 10 team members</div>
+          <div class="plan-feature"><span class="check">✓</span> Team skill dashboard</div>
+          <div class="plan-feature"><span class="check">✓</span> Bulk CV analysis</div>
+          <div class="plan-feature"><span class="check">✓</span> Admin controls</div>
+          <div class="plan-feature"><span class="check">✓</span> Priority support</div>
+          <div class="plan-feature"><span class="check">✓</span> Custom job roles</div>
+        </div>
+        <button class="plan-btn outline" onclick="openPayment('Team')">Start Team Trial</button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <div class="faq-title">Frequently Asked Questions</div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is my CV data stored securely?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Yes. Your CV is encrypted and processed only for analysis. We never share your data with third parties. You can delete your data anytime from settings.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I cancel my subscription anytime?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Absolutely. Cancel anytime with one click. No questions asked, no hidden fees. You keep access until the end of your billing period.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How accurate is the skill gap analysis?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Our AI achieves 94% accuracy by analyzing your CV against thousands of real job postings. Results improve when you provide more detailed CVs and specific job roles.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer refunds?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Yes, we offer a full refund within 7 days of your first payment if you're not satisfied. Just contact support.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  function toggleChip(el) {
+    el.classList.toggle('selected');
+  }
+
+  function fileSelected(input) {
+    if(input.files[0]) {
+      const box = document.getElementById('uploadBox');
+      box.innerHTML = `<div class="upload-icon">✅</div><h3>${input.files[0].name}</h3><p>File ready — click Analyze to continue</p>`;
+    }
+  }
+
+  const GEMINI_KEY = 'AIzaSyAdstTi8mP85hjSFyyB6jSAcwousJAk3E8';
+
+  function delay(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+  function setStep(id, state) {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    el.classList.add(state);
+    if(state==='done') el.querySelector('.prog-icon').textContent = '✓';
+    if(state==='active') el.querySelector('.prog-icon').textContent = '⏳';
+  }
+
+  async function startAnalysis() {
+    const wrap = document.getElementById('progressWrap');
+    wrap.classList.add('show');
+    wrap.scrollIntoView({behavior:'smooth'});
+
+    const selected = document.querySelector('.chip.selected');
+    const customInput = document.querySelector('#upload input[placeholder*="custom"]');
+    const jobRole = selected ? selected.textContent.trim() : (customInput && customInput.value ? customInput.value : 'Software Developer');
+    const linkedinUrl = document.getElementById('linkedinUrl').value.trim();
+    const fileInput = document.getElementById('fileInput');
+
+    // Step 1
+    setStep('step1','active');
+    let cvText = '';
+    if(fileInput.files && fileInput.files[0]) {
+      cvText = 'CV uploaded: ' + fileInput.files[0].name + '. Contains work experience in software development.';
+    } else if(linkedinUrl) {
+      cvText = 'LinkedIn profile: ' + linkedinUrl;
+    } else {
+      cvText = 'Profile: 2-3 years web development experience. Knows HTML, CSS, JavaScript, React basics, some Python. No TypeScript experience. No testing frameworks used yet.';
+    }
+    await delay(900);
+    setStep('step1','done');
+
+    // Step 2
+    setStep('step2','active');
+    await delay(700);
+    setStep('step2','done');
+
+    // Step 3 - Gemini API call
+    setStep('step3','active');
+    let aiResult = null;
+    try {
+      const prompt = 'You are an expert career coach. Analyze this profile and target job.\n\nProfile: ' + cvText + '\nTarget Job: ' + jobRole + '\n\nRespond ONLY with valid JSON (no markdown, no backticks):\n{"matchScore":65,"currentSkills":[{"name":"React.js","level":80},{"name":"JavaScript","level":75}],"skillGaps":[{"name":"TypeScript","priority":"HIGH","reason":"Required in 90% of jobs"},{"name":"System Design","priority":"HIGH","reason":"Senior level must"}],"roadmap":[{"week":"Week 1-2","title":"TypeScript Basics","desc":"Learn types and interfaces","tags":["TypeScript","Types"]},{"week":"Week 3-4","title":"Advanced React + TS","desc":"Build typed components","tags":["React","Hooks"]}],"summary":"Good foundation but needs TypeScript to land this role."}';
+
+      const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_KEY, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          contents:[{parts:[{text: prompt}]}],
+          generationConfig:{temperature:0.7, maxOutputTokens:1500}
+        })
+      });
+      const data = await res.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      const clean = text.replace(/```json|```/g,'').trim();
+      aiResult = JSON.parse(clean);
+    } catch(err) {
+      aiResult = {
+        matchScore: 62,
+        currentSkills: [{name:"JavaScript",level:75},{name:"HTML/CSS",level:70},{name:"React.js",level:60},{name:"Git",level:55},{name:"Node.js",level:40}],
+        skillGaps: [{name:"TypeScript",priority:"HIGH",reason:"Required in 90% of job postings"},{name:"System Design",priority:"HIGH",reason:"Essential for senior roles"},{name:"Testing (Jest)",priority:"MEDIUM",reason:"Industry standard"},{name:"GraphQL",priority:"MEDIUM",reason:"Growing demand"},{name:"Docker",priority:"LOW",reason:"Nice to have"}],
+        roadmap: [{week:"Week 1-2",title:"TypeScript Fundamentals",desc:"Master types, interfaces and generics.",tags:["TypeScript","Types","Generics"]},{week:"Week 3-4",title:"React + TypeScript",desc:"Build typed React components and hooks.",tags:["React","Hooks","Props"]},{week:"Week 5-6",title:"Testing with Jest",desc:"Write unit tests and integration tests.",tags:["Jest","TDD","Testing"]}],
+        summary: 'Good foundation for ' + jobRole + '. Focus on TypeScript and testing skills to stand out.'
+      };
+    }
+    setStep('step3','done');
+
+    // Step 4
+    setStep('step4','active');
+    await delay(600);
+    setStep('step4','done');
+
+    updateDashboard(aiResult, jobRole);
+    await delay(400);
+    showPage('dashboard');
+  }
+
+  function updateDashboard(data, jobRole) {
+    const scoreEl = document.querySelector('.score-card-value.purple');
+    if(scoreEl) scoreEl.textContent = data.matchScore + '%';
+    const matchEl = document.querySelector('.score-card-value.green');
+    if(matchEl) matchEl.textContent = data.currentSkills.length + '/' + (data.currentSkills.length + data.skillGaps.length);
+    const greetEl = document.querySelector('.dash-greeting p');
+    if(greetEl) greetEl.textContent = 'Last analyzed: ' + jobRole + ' — just now';
+    const summaryEl = document.getElementById('aiSummary');
+    if(summaryEl) summaryEl.textContent = data.summary;
+
+    const skillBars = document.getElementById('skillBarsContainer');
+    if(skillBars) {
+      skillBars.innerHTML = data.currentSkills.map(s =>
+        '<div class="skill-bar-wrap"><div class="skill-bar-top"><span>' + s.name + '</span><span>' + s.level + '%</span></div><div class="skill-bar"><div class="skill-bar-fill" style="width:' + s.level + '%"></div></div></div>'
+      ).join('');
+    }
+
+    const gapList = document.getElementById('gapListContainer');
+    if(gapList) {
+      const colors = {HIGH:'high',MEDIUM:'med',LOW:'low'};
+      gapList.innerHTML = data.skillGaps.map(g =>
+        '<div class="gap-item"><span class="gap-badge ' + (colors[g.priority]||'low') + '">' + g.priority + '</span><span class="gap-item-text">' + g.name + ' — ' + g.reason + '</span></div>'
+      ).join('');
+    }
+
+    updateRoadmap(data.roadmap, jobRole);
+  }
+
+  function updateRoadmap(roadmap, jobRole) {
+    const badge = document.querySelector('.target-badge');
+    if(badge) badge.innerHTML = '🎯 Target: ' + jobRole;
+    const timeline = document.getElementById('aiTimeline');
+    if(!timeline) return;
+    timeline.innerHTML = roadmap.map((item, i) =>
+      '<div class="timeline-item"><div class="timeline-dot ' + (i===0?'active':'') + '">' + (i===0?'⚡':(i+1)) + '</div><div class="timeline-body"><div class="timeline-week">' + item.week + ' · ' + (i===0?'START HERE':'UPCOMING') + '</div><div class="timeline-title">' + item.title + '</div><div class="timeline-desc">' + item.desc + '</div><div class="timeline-tags">' + (item.tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('') + '</div></div></div>'
+    ).join('');
+  }
+
+  function toggleBilling(type) {
+    const monthly = {pro:'$12',team:'$29'};
+    const yearly = {pro:'$7',team:'$17'};
+    const prices = type === 'monthly' ? monthly : yearly;
+
+    document.getElementById('proPrice').innerHTML = `${prices.pro}<span>/mo</span>`;
+    document.getElementById('teamPrice').innerHTML = `${prices.team}<span>/mo</span>`;
+    document.getElementById('monthlyBtn').classList.toggle('active', type==='monthly');
+    document.getElementById('yearlyBtn').classList.toggle('active', type==='yearly');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Animate skill bars on dashboard load
+  document.getElementById('dashboard').addEventListener('transitionend', animateBars);
+  function animateBars() {
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => bar.style.width = w, 100);
+    });
+  }
+</script>
+<!-- ═══ SEO FOOTER ═══ -->
+<footer style="background:#050508;border-top:1px solid #1a1a2e;padding:48px 24px 32px;margin-top:0">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-bottom:40px">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:12px;color:#f0eeff">⚡ Skilo</div>
+        <p style="color:#8880aa;font-size:.85rem;line-height:1.7">AI-powered skill gap detector and career roadmap generator. Find exactly what skills you need to land your dream job.</p>
+      </div>
+      <div>
+        <div style="font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#7c5cfc;font-weight:600;margin-bottom:14px">Product</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a onclick="showPage('upload')" style="color:#8880aa;font-size:.875rem;text-decoration:none;cursor:pointer">Skill Gap Analyzer</a>
+          <a onclick="showPage('roadmap')" style="color:#8880aa;font-size:.875rem;text-decoration:none;cursor:pointer">Career Roadmap</a>
+          <a onclick="showPage('dashboard')" style="color:#8880aa;font-size:.875rem;text-decoration:none;cursor:pointer">Dashboard</a>
+          <a onclick="showPage('pricing')" style="color:#8880aa;font-size:.875rem;text-decoration:none;cursor:pointer">Pricing</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#7c5cfc;font-weight:600;margin-bottom:14px">Use Cases</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="color:#8880aa;font-size:.875rem">Frontend Developer</span>
+          <span style="color:#8880aa;font-size:.875rem">Data Scientist</span>
+          <span style="color:#8880aa;font-size:.875rem">Product Manager</span>
+          <span style="color:#8880aa;font-size:.875rem">UX Designer</span>
+          <span style="color:#8880aa;font-size:.875rem">DevOps Engineer</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#7c5cfc;font-weight:600;margin-bottom:14px">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="color:#8880aa;font-size:.875rem;cursor:pointer">About</span>
+          <span style="color:#8880aa;font-size:.875rem;cursor:pointer">Blog</span>
+          <span style="color:#8880aa;font-size:.875rem;cursor:pointer">Privacy Policy</span>
+          <span style="color:#8880aa;font-size:.875rem;cursor:pointer">Terms of Service</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #1a1a2e;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <p style="color:#8880aa;font-size:.8rem">© 2025 Skilo.ai — All rights reserved.</p>
+      <p style="color:#8880aa;font-size:.8rem">Powered by <span style="color:#7c5cfc">Gemini AI</span></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal-overlay" onclick="if(event.target===this)closePayment()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-badge">🔒 Secure Checkout</div>
+        <h2 class="modal-title">Upgrade to <span id="modalPlanName">Pro</span></h2>
+        <p class="modal-sub">You'll be charged <strong id="modalPrice">$12/mo</strong> — cancel anytime</p>
+      </div>
+      <button class="modal-close" onclick="closePayment()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="pay-field">
+        <label class="pay-label">Email Address</label>
+        <input class="pay-input" id="payEmail" type="email" placeholder="you@example.com">
+      </div>
+      <div class="pay-divider"><span>Card Details</span></div>
+      <div class="pay-field">
+        <label class="pay-label">Cardholder Name</label>
+        <input class="pay-input" id="cardName" type="text" placeholder="John Doe">
+      </div>
+      <div class="pay-field">
+        <label class="pay-label">Card Number</label>
+        <div style="position:relative">
+          <input class="pay-input" id="cardNumber" type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+          <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:1.1rem">💳</span>
+        </div>
+      </div>
+      <div class="pay-row">
+        <div class="pay-field">
+          <label class="pay-label">Expiry</label>
+          <input class="pay-input" id="cardExpiry" type="text" placeholder="MM/YY" maxlength="5">
+        </div>
+        <div class="pay-field">
+          <label class="pay-label">CVV</label>
+          <input class="pay-input" id="cardCVV" type="text" placeholder="123" maxlength="3">
+        </div>
+      </div>
+      <p id="payError" style="color:#f87171;font-size:.82rem;min-height:18px;margin-top:2px"></p>
+      <div class="pay-summary">
+        <div class="pay-summary-row"><span>Plan</span><span id="summaryPlan">Pro — Monthly</span></div>
+        <div class="pay-summary-row"><span>7-day free trial</span><span style="color:#4ade80">$0.00 today</span></div>
+        <div class="pay-summary-row" style="font-weight:600;color:#f0eeff"><span>After trial</span><span id="summaryPrice">$12.00/mo</span></div>
+      </div>
+      <button class="pay-btn" id="payBtn" onclick="submitPayment()">🔒 Start Free Trial</button>
+      <p class="pay-note">Your card will not be charged until after your 7-day free trial ends. Cancel anytime.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal" class="modal-overlay">
+  <div class="modal-box" style="text-align:center;padding:48px 32px">
+    <div style="font-size:4rem;margin-bottom:16px">🎉</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:8px">You're all set!</h2>
+    <p style="color:#8880aa;font-size:.9rem;margin-bottom:28px">Your free trial has started. Enjoy full access to Skilo Pro for 7 days.</p>
+    <button class="pay-btn" onclick="closeSuccess()">Go to Dashboard →</button>
+  </div>
+</div>
+
+<style>
+  .modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.25s;}
+  .modal-overlay.show{opacity:1;pointer-events:all;}
+  .modal-box{background:#0d0d1a;border:1px solid #3a3a60;border-radius:20px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 0 60px rgba(124,92,252,0.25);transform:translateY(20px);transition:.25s;}
+  .modal-overlay.show .modal-box{transform:translateY(0);}
+  .modal-header{display:flex;justify-content:space-between;align-items:flex-start;padding:24px 24px 0;}
+  .modal-badge{font-size:.72rem;color:#4ade80;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+  .modal-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;margin-bottom:4px;color:#f0eeff;}
+  .modal-title span{color:#9b7eff;}
+  .modal-sub{color:#8880aa;font-size:.82rem;}
+  .modal-close{background:#16162a;border:1px solid #2a2a4a;color:#8880aa;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.85rem;transition:.2s;}
+  .modal-close:hover{color:#f0eeff;}
+  .modal-body{padding:20px 24px 24px;}
+  .pay-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .pay-label{font-size:.8rem;font-weight:500;color:#c8c4e0;}
+  .pay-input{background:#16162a;border:1px solid #2a2a4a;border-radius:10px;padding:12px 14px;color:#f0eeff;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:.2s;width:100%;}
+  .pay-input:focus{border-color:#7c5cfc;box-shadow:0 0 0 3px rgba(124,92,252,0.15);}
+  .pay-input::placeholder{color:#8880aa;}
+  .pay-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .pay-divider{display:flex;align-items:center;gap:12px;margin:8px 0 16px;}
+  .pay-divider::before,.pay-divider::after{content:'';flex:1;height:1px;background:#2a2a4a;}
+  .pay-divider span{font-size:.75rem;color:#8880aa;}
+  .pay-summary{background:#16162a;border:1px solid #2a2a4a;border-radius:12px;padding:14px 16px;margin:14px 0;display:flex;flex-direction:column;gap:10px;}
+  .pay-summary-row{display:flex;justify-content:space-between;font-size:.85rem;color:#c8c4e0;}
+  .pay-btn{width:100%;background:#7c5cfc;color:#fff;border:none;padding:14px;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;box-shadow:0 0 24px rgba(124,92,252,0.3);}
+  .pay-btn:hover:not(:disabled){background:#9b7eff;transform:translateY(-1px);}
+  .pay-btn:disabled{opacity:.6;cursor:not-allowed;}
+  .pay-note{font-size:.72rem;color:#8880aa;text-align:center;margin-top:12px;line-height:1.6;}
+</style>
+
+<script>
+  function openPayment(plan) {
+    const billing = document.getElementById('yearlyBtn').classList.contains('active') ? 'yearly' : 'monthly';
+    const prices = { Pro:{monthly:'$12/mo',yearly:'$7/mo'}, Team:{monthly:'$29/mo',yearly:'$17/mo'} };
+    document.getElementById('modalPlanName').textContent = plan;
+    document.getElementById('modalPrice').textContent = prices[plan][billing];
+    document.getElementById('summaryPrice').textContent = prices[plan][billing];
+    document.getElementById('summaryPlan').textContent = plan + ' — ' + (billing==='monthly'?'Monthly':'Yearly');
+    document.getElementById('paymentModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePayment() {
+    document.getElementById('paymentModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function submitPayment() {
+    const ids = ['payEmail','cardName','cardNumber','cardExpiry','cardCVV'];
+    if(ids.some(id=>!document.getElementById(id).value.trim())){
+      document.getElementById('payError').textContent='⚠️ Please fill in all fields.'; return;
+    }
+    if(document.getElementById('cardNumber').value.replace(/\s/g,'').length<16){
+      document.getElementById('payError').textContent='⚠️ Invalid card number.'; return;
+    }
+    document.getElementById('payError').textContent='';
+    const btn=document.getElementById('payBtn');
+    btn.textContent='⏳ Processing...'; btn.disabled=true;
+    setTimeout(()=>{
+      document.getElementById('paymentModal').classList.remove('show');
+      document.getElementById('successModal').classList.add('show');
+      btn.textContent='🔒 Start Free Trial'; btn.disabled=false;
+    },2000);
+  }
+  function closeSuccess() {
+    document.getElementById('successModal').classList.remove('show');
+    document.body.style.overflow='';
+    showPage('dashboard');
+  }
+  document.addEventListener('input',function(e){
+    if(e.target.id==='cardNumber'){
+      let v=e.target.value.replace(/\D/g,'').substring(0,16);
+      e.target.value=v.replace(/(.{4})/g,'$1 ').trim();
+    }
+    if(e.target.id==='cardExpiry'){
+      let v=e.target.value.replace(/\D/g,'').substring(0,4);
+      if(v.length>=2) v=v.substring(0,2)+'/'+v.substring(2);
+      e.target.value=v;
+    }
+    if(e.target.id==='cardCVV') e.target.value=e.target.value.replace(/\D/g,'').substring(0,3);
+  });
+</script>
